@@ -1,14 +1,5 @@
 <?php
 /*
-	Plugin Name: WooCommerce Product Reports
-	Description: Generates reports based on WooCommerce Products
-	Version: 1.0.0
-	Author: <a href="https://github.com/lkarinja">Leejae Karinja</a>
-	License: GPL3
-	License URI: https://www.gnu.org/licenses/gpl-3.0.html
-*/
-
-/*
 	WooCommerce Product Reports
 	Copyright (C) 2017 Leejae Karinja
 

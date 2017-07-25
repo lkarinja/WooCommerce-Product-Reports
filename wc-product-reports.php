@@ -35,8 +35,14 @@ if(!defined('ABSPATH'))
 // Defines path to this plugin
 define('WC_PRODUCT_REPORTS_PATH', plugin_dir_path(__FILE__));
 
+// Defines path to where files should be exported ([WordPress Install Directory]/Exports/)
+define('EXPORT_PATH', realpath(__DIR__ . '/../../../Exports') . '/');
+
 // Include the Query Builder
 include_once(WC_PRODUCT_REPORTS_PATH . 'includes/query-builder.php');
+
+// Include the Exporter
+include_once(WC_PRODUCT_REPORTS_PATH . 'includes/exporter.php');
 
 // If the class for the plugin is not defined
 if(!class_exists('WC_Product_Reports'))
@@ -110,6 +116,14 @@ if(!class_exists('WC_Product_Reports'))
 			// Items sold based on filter parameters
 			$items = Query_Builder::get_items($start_date, date('Y-m-d', strtotime('+1 day', strtotime($end_date))), $selected_vendor);
 
+			if(isset($_POST['export']))
+			{
+				$file = EXPORT_PATH . 'Item Export.csv';
+				$data = $items;
+				array_unshift($data, array("Product Name", "SKU", "Vendor", "Quantity"));
+				Exporter::export_csv($data, $file);
+			}
+
 			// HTML/PHP for the page display
 			?>
 
@@ -127,7 +141,9 @@ if(!class_exists('WC_Product_Reports'))
 						<?php foreach($vendors as $key => $vendor) printf('<option value="%s" %s>%s</option>', $vendor->ID, selected($selected_vendor, $vendor->ID, false), $vendor->display_name); ?>
 					</select>
 
-					<input type="submit" class="button" value="<?php _e('Filter', $this->textdomain); ?>"/>
+					<input type="submit" value="<?php _e('Filter', $this->textdomain); ?>" />
+
+					<input type="submit" name="export" value="<?php _e('Export', $this->textdomain); ?>" />
 				</p>
 			</form>
 
