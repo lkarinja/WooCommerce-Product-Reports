@@ -8,3 +8,4 @@ php:
 script:
   - php -l wc-product-reports.php
   - php -l includes/query-builder.php
+  - php -l includes/exporter.php
