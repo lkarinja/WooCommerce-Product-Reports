@@ -6,3 +6,5 @@ Code Climate GPA: [![Code Climate GPA](https://codeclimate.com/github/lkarinja/W
 Issue Count: [![Issue Count](https://codeclimate.com/github/lkarinja/WooCommerce-Product-Reports/badges/issue_count.svg)](https://codeclimate.com/github/lkarinja/WooCommerce-Product-Reports)
 
 Generates reports based on WooCommerce Products
+
+This plugin is currently obsolete, see https://github.com/lkarinja/Detailed-Reports
